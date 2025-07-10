@@ -1,4 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const ServiceCards = () => {
   const navigate = useNavigate();
@@ -69,6 +74,17 @@ const ServiceCards = () => {
       price: 'Starting at $65/hour',
       rating: 4.6,
       providers: 380
+    },
+    {
+      title: 'Caretaker Service',
+      description: 'Trusted caretakers to look after your elderly parents and children with compassion and professionalism.',
+      icon: '🧑‍⚕️',
+      image: 'https://images.pexels.com/photos/3376799/pexels-photo-3376799.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+      color: 'from-teal-400 to-blue-500',
+      features: ['Elderly Care', 'Child Care', 'Companionship', 'Daily Assistance'],
+      price: 'Starting at $50/hour',
+      rating: 4.95,
+      providers: 500
     }
   ];
 
@@ -97,67 +113,78 @@ const ServiceCards = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <Swiper
+          modules={[Navigation, Pagination, A11y, Autoplay]}
+          spaceBetween={24}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          breakpoints={{
+            640: { slidesPerView: 1.2 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="service-swiper pb-12"
+        >
           {services.map((service, index) => (
-            <div key={index} className="card p-0 group cursor-pointer overflow-hidden">
-              {/* Service Image */}
-              <div className="relative h-48 sm:h-56 overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className={`absolute top-4 left-4 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
-                </div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="flex items-center space-x-2 mb-1">
-                    <div className="flex">
-                      {renderStars(service.rating)}
-                    </div>
-                    <span className="text-sm font-medium">{service.rating}</span>
+            <SwiperSlide key={index}>
+              <div className="card group cursor-pointer overflow-hidden shadow-lg rounded-3xl bg-white flex flex-col h-full">
+                {/* Service Image */}
+                <div className="relative h-52 sm:h-60 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className={`absolute top-4 left-4 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center text-3xl sm:text-4xl group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    {service.icon}
                   </div>
-                  <div className="text-sm opacity-90">{service.providers} providers</div>
-                </div>
-              </div>
-
-              {/* Service Content */}
-              <div className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors duration-300">
-                  {service.title}
-                </h3>
-                
-                <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                  {service.description}
-                </p>
-
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-gray-600 text-sm sm:text-base">
-                      <div className="w-2 h-2 bg-primary-500 rounded-full mr-3 flex-shrink-0"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-lg sm:text-xl font-bold text-primary-600">{service.price}</span>
-                  <span className="text-sm text-gray-500">per service</span>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <div className="flex">
+                        {renderStars(service.rating)}
+                      </div>
+                      <span className="text-sm font-medium">{service.rating}</span>
+                    </div>
+                    <div className="text-xs opacity-90">{service.providers} providers</div>
+                  </div>
                 </div>
 
-                <button 
-                  onClick={() => navigate('/login')}
-                  className="w-full py-3 px-6 bg-primary-50 text-primary-600 font-semibold rounded-xl hover:bg-primary-100 transition-all duration-300 group-hover:bg-primary-600 group-hover:text-white transform group-hover:scale-105"
-                >
-                  Find Providers
-                </button>
+                {/* Service Content */}
+                <div className="p-6 sm:p-8 flex flex-col flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 mb-3 leading-relaxed text-sm sm:text-base">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-1 mb-4">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-gray-600 text-sm sm:text-base">
+                        <div className="w-2 h-2 bg-primary-500 rounded-full mr-2 flex-shrink-0"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex items-center justify-between mb-4 mt-auto">
+                    <span className="text-lg sm:text-xl font-bold text-primary-600">{service.price}</span>
+                    <span className="text-xs text-gray-500">per service</span>
+                  </div>
+                  <button 
+                    onClick={() => navigate('/login')}
+                    className="w-full py-3 px-6 bg-primary-50 text-primary-600 font-semibold rounded-xl hover:bg-primary-100 transition-all duration-300 group-hover:bg-primary-600 group-hover:text-white transform group-hover:scale-105"
+                  >
+                    Find Providers
+                  </button>
+                </div>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
 
-        <div className="text-center mt-12 sm:mt-16">
+        <div className="text-center mt-8 sm:mt-12">
           <button 
             onClick={() => navigate('/login')}
             className="btn-primary text-lg px-8 py-4"

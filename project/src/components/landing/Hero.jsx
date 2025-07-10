@@ -1,111 +1,119 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import heroImg from '../../assets/hero-img.png';
+
+const featureCards = [
+  {
+    icon: (
+      <span className="text-3xl">🔒</span>
+    ),
+    title: 'Trustworthiness',
+    desc: 'Building trust with clients by being transparent, honest, and reliable in all interactions, including respecting privacy.'
+  },
+  {
+    icon: (
+      <span className="text-3xl">🤝</span>
+    ),
+    title: 'Professionalism',
+    desc: 'Conducting all cleaning tasks with professionalism, including arriving on time, adhering to safety standards.'
+  },
+  {
+    icon: (
+      <span className="text-3xl">😊</span>
+    ),
+    title: 'Customer Satisfaction',
+    desc: 'Prioritizing the needs and preferences of customers and striving to exceed their expectations.'
+  }
+];
 
 const Hero = () => {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate('/login');
-    }
-  };
-
-  const popularServices = ['Cook', 'Mechanic', 'Tutor', 'Cleaner', 'Electrician'];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-secondary-50 font-sans pt-20 overflow-hidden">
-      {/* Decorative Gradient Blobs */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-tr from-primary-200 via-accent-200 to-secondary-200 opacity-40 rounded-full blur-3xl animate-pulse-slow z-0" />
-      <div className="absolute -bottom-32 right-0 w-96 h-96 bg-gradient-to-br from-secondary-200 via-primary-100 to-accent-100 opacity-30 rounded-full blur-3xl animate-pulse-slow z-0" />
-
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 text-center flex flex-col items-center">
-        {/* Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-4 sm:mb-6 text-gray-900">
-          Find Local Service
-          <span className="block bg-gradient-to-r from-primary-600 via-accent-500 to-secondary-500 bg-clip-text text-transparent animate-gradient-x">
-            Providers
-          </span>
-        </h1>
-        <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed font-medium">
-          Connect with trusted local professionals for all your home service needs. From cooking to repairs, find the perfect helper in your neighborhood.
-        </p>
-
-        {/* Search Bar */}
-        <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto mb-8 flex flex-col sm:flex-row items-center gap-3 bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg border border-gray-200 p-2 sm:p-3">
-          <input
-            type="text"
-            placeholder="What service do you need?"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 px-4 py-3 sm:py-4 bg-transparent text-gray-900 placeholder-gray-400 focus:outline-none text-base sm:text-lg font-medium rounded-lg"
-          />
-          <button
-            type="submit"
-            className="px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg bg-gradient-to-r from-primary-600 to-secondary-500 text-white shadow-md hover:from-primary-700 hover:to-secondary-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-300 active:scale-95"
-          >
-            Find Services
-          </button>
-        </form>
-
-        {/* Popular Services */}
-        <div className="mt-2 flex flex-wrap justify-center gap-2 mb-8">
-          <span className="text-primary-500 text-sm font-semibold">Popular:</span>
-          {popularServices.map((service) => (
-            <button
-              key={service}
-              onClick={() => navigate('/login')}
-              className="text-primary-600 hover:text-white text-sm font-medium bg-primary-100 hover:bg-primary-500 px-4 py-1.5 rounded-full transition-all duration-200 shadow-sm border border-primary-200 cursor-pointer active:scale-95"
-            >
-              {service}
-            </button>
+    <>
+      {/* Hero Section */}
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#6dd5ed] via-[#2193b0] to-[#b2fefa]">
+        {/* Dotted Vector Pattern */}
+        <svg className="absolute left-0 top-0 w-full h-full z-0 opacity-30" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="2" fill="#ffffff" />
+            </pattern>
+          </defs>
+          <rect width="1440" height="600" fill="url(#dots)" />
+        </svg>
+        {/* Decorative SVG Wave at Bottom */}
+        <svg className="absolute bottom-0 left-0 w-full h-32 z-0" viewBox="0 0 1440 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,80 C360,160 1080,0 1440,80 L1440,150 L0,150 Z" fill="#fff" fillOpacity="0.7" />
+        </svg>
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12 py-12 md:py-24 gap-10 md:gap-0">
+          {/* Left: Text Content */}
+          <div className="flex-1 flex flex-col items-start justify-center max-w-xl text-left">
+            {/* Badge */}
+            <div className="flex items-center mb-4">
+              <span className="bg-white/80 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-2 shadow">
+                <span className="inline-block w-2 h-2 bg-cyan-400 rounded-full"></span>
+                Fast and efficient service
+              </span>
+            </div>
+            {/* Headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white drop-shadow-xl">
+              Seamless Door-to-Door Services by Trusted Local Professionals
+            </h1>
+            {/* Subtext */}
+            <p className="text-white/90 text-lg mb-8 max-w-lg font-medium drop-shadow">
+              We connect you with skilled local service providers who deliver reliable, door-to-door help for all your home and personal needs.
+            </p>
+            {/* CTA Buttons */}
+            <div className="flex gap-4 mb-4">
+              <button
+                onClick={() => navigate('/login')}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-7 py-3 rounded-lg shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-300 text-lg"
+              >
+                Request Service
+              </button>
+              <button
+                onClick={() => {
+                  const element = document.querySelector('#how-it-works');
+                  if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="border border-white text-white font-semibold px-7 py-3 rounded-lg bg-transparent hover:bg-white hover:text-cyan-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white text-lg shadow"
+              >
+                Discover More
+              </button>
+            </div>
+          </div>
+          {/* Right: Image & Bubbles */}
+          <div className="flex-1 flex items-center justify-center relative w-full md:w-1/2 min-h-[350px]">
+            {/* Main Hero Image */}
+            <div className="relative">
+              <img
+                src={heroImg}
+                alt="Home cleaning professional"
+                className="w-[620px] h-[520px] object-cover rounded-3xl "
+                loading="lazy"
+              />
+              {/* Floating Bubbles */}
+              <span className="absolute -top-6 -left-6 w-10 h-10 bg-white/40 rounded-full border-2 border-white/60"></span>
+              <span className="absolute bottom-8 -right-8 w-7 h-7 bg-white/30 rounded-full border border-white/40"></span>
+              <span className="absolute top-1/2 left-full w-4 h-4 bg-white/50 rounded-full"></span>
+              <span className="absolute bottom-0 left-1/2 w-3 h-3 bg-white/30 rounded-full"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Feature Cards Section */}
+      <section className="bg-white py-12 px-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          {featureCards.map((card, idx) => (
+            <div key={idx} className="bg-white rounded-2xl shadow-md border border-gray-100 p-8 flex flex-col items-center text-center transition-transform hover:scale-105">
+              <div className="mb-4">{card.icon}</div>
+              <h3 className="text-lg font-bold mb-2 text-gray-900">{card.title}</h3>
+              <p className="text-gray-500 text-sm">{card.desc}</p>
+            </div>
           ))}
         </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10 w-full">
-          <button
-            onClick={() => navigate('/login')}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-primary-600 to-secondary-500 text-white shadow-lg hover:from-primary-700 hover:to-secondary-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-300 active:scale-95"
-          >
-            Get Started Today
-          </button>
-          <button
-            onClick={() => {
-              const element = document.querySelector('#how-it-works');
-              if (element) element.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-lg bg-white/80 border border-primary-200 text-primary-700 hover:bg-primary-50 shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-200 active:scale-95"
-          >
-            Learn More
-          </button>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 w-full">
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 flex flex-col items-center shadow-lg hover:scale-105 transition-transform duration-300 border border-primary-100">
-            <div className="text-3xl sm:text-4xl font-extrabold text-primary-600 mb-2">10,000+</div>
-            <div className="text-gray-700 text-base sm:text-lg font-medium">Happy Customers</div>
-          </div>
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 flex flex-col items-center shadow-lg hover:scale-105 transition-transform duration-300 border border-primary-100">
-            <div className="text-3xl sm:text-4xl font-extrabold text-primary-600 mb-2">5,000+</div>
-            <div className="text-gray-700 text-base sm:text-lg font-medium">Service Providers</div>
-          </div>
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 flex flex-col items-center shadow-lg hover:scale-105 transition-transform duration-300 border border-primary-100">
-            <div className="text-3xl sm:text-4xl font-extrabold text-primary-600 mb-2">50+</div>
-            <div className="text-gray-700 text-base sm:text-lg font-medium">Service Categories</div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
-          <div className="w-7 h-12 border-2 border-primary-200 rounded-full flex justify-center items-start">
-            <div className="w-1 h-4 bg-primary-400 rounded-full mt-2 animate-bounce"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

@@ -6,7 +6,9 @@ const navItems = [
   { label: 'Services', path: '#services' },
   { label: 'How It Works', path: '#how-it-works' },
   { label: 'Pricing', path: '#pricing' },
-  { label: 'Contact', path: '#contact' }
+  { label: 'Contact', path: '#contact' },
+  { label: 'Professionals', path: '/professionals' }
+  // Removed Caretakers link
 ];
 
 const Navbar = () => {
@@ -28,7 +30,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent text-black backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -41,13 +43,13 @@ const Navbar = () => {
           >
             
             <span className="text-2xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300 tracking-tight">
-              QuickHelper
+              <a href="/" className="hover:text-primary-600 transition-colors duration-300" >LocalHelper</a>
             </span>
           </div>
 
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-6">
+          <div className="hidden lg:flex items-center t gap-2 xl:gap-6">
             {navItems.map((item) => {
               const isActive = activeNav === item.path;
               return (
@@ -55,7 +57,7 @@ const Navbar = () => {
                   key={item.label}
                   onClick={() => handleNavClick(item.path)}
                   className={`relative px-4 py-2 transition-all duration-200 cursor-pointer transition-transform active:scale-95
-                    ${isActive ? 'font-bold text-primary-600' : 'font-normal text-gray-700 hover:text-primary-600'}
+                    ${isActive ? 'font-bold text-primary-600' : 'font-normal text-black hover:text-primary-600'}
                   `}
                   aria-label={`Go to ${item.label}`}
                 >
@@ -108,7 +110,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed top-0 right-0 z-50 w-4/5 max-w-xs h-full bg-white/90 shadow-2xl backdrop-blur-xl border-l border-gray-200 transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}
+        className={`fixed top-0 right-0 z-50 w-4/5 max-w-xs h-full bg-white/80 backdrop-blur-xl shadow-2xl border-l border-gray-200/50 transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}
         aria-label="Mobile menu"
       >
         <div className="flex flex-col h-full py-8 px-6 gap-6">

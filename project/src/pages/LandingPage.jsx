@@ -5,15 +5,17 @@ import HowItWorks from '../components/landing/HowItWorks';
 import Pricing from '../components/landing/Pricing';
 import Testimonials from '../components/landing/Testimonials';
 import Footer from '../components/landing/Footer';
+import CaretakerPage from './CaretakerPage';
 
 const LandingPage = () => {
   return (
     <div className="min-h-screen  w-[100vw] overflow-x-hidden">
       <Navbar />
       <Hero />
+      <CaretakerPage />
       <ServiceCards />
       <HowItWorks />
-      <Pricing />
+      {/* <Pricing /> */}
       <Testimonials />
       <Footer />
     </div>
